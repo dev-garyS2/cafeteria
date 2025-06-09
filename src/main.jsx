@@ -7,8 +7,8 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <HashRouterRouter basename="/cafeteria">
+    <HashRouter basename="/cafeteria/">
       <App />
-    </HashRouterRouter>
+    </HashRouter>
   </React.StrictMode>
 );
