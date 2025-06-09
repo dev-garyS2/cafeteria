@@ -1,5 +1,6 @@
-import AOS from 'aos';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import 'aos/dist/aos.css';
+import AOS from 'aos';
 import { useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -10,31 +11,23 @@ import Map from './components/Map';
 import Footer from './components/Footer';
 
 function App() {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
-    <div>
-      <Header />
+    <div className="App">
+     
+        <Header />
+        <Routes>
+          <Route path="/home" element={<Hero />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/map" element={<Map />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+        <Footer />
       
-      <section id="home">
-        <Hero />
-      </section>
-
-      <section id="about">
-        <About />
-      </section>
-
-      <section id="menu">
-        <Menu />
-      </section>
-
-      <section id="contact">
-        <Contact />
-      </section>
-      
-      <section id="location">
-        <Map></Map>
-      </section>
-
-      <Footer />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 
 function Header() {
   const [activeSection, setActiveSection] = useState('home');
@@ -29,10 +30,10 @@ function Header() {
     <header>
       <h1>Café Aromático</h1>
       <nav>
-        <a href="#home" className={activeSection === 'home' ? 'active' : ''}>Inicio</a>
-        <a href="#about" className={activeSection === 'about' ? 'active' : ''}>Nosotros</a>
-        <a href="#menu" className={activeSection === 'menu' ? 'active' : ''}>Menú</a>
-        <a href="#contact" className={activeSection === 'contact' ? 'active' : ''}>Contacto</a>
+        <a href="home" className={activeSection === 'home' ? 'active' : ''}>Inicio</a>
+        <a href="about" className={activeSection === 'about' ? 'active' : ''}>Nosotros</a>
+        <a href="menu" className={activeSection === 'menu' ? 'active' : ''}>Menú</a>
+        <a href="contact" className={activeSection === 'contact' ? 'active' : ''}>Contacto</a>
       </nav>
     </header>
   );

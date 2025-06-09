@@ -8,7 +8,7 @@ function Hero() {
         <p className={styles.subtitle}>
           Disfrutá el mejor café de la ciudad en un ambiente acogedor.
         </p>
-        <a href="#menu" className={styles.ctaButton}>
+        <a href="menu" className={styles.ctaButton}>
           Ver Menú
         </a>
       </div>
