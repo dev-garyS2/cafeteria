@@ -20,7 +20,7 @@ function App() {
      
         <Header />
         <Routes>
-          <Route path="/home" element={<Hero />} />
+          <Route path="/" element={<Hero />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/map" element={<Map />} />

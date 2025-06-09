@@ -30,10 +30,10 @@ function Header() {
     <header>
       <h1>Café Aromático</h1>
       <nav>
-        <a href="home" className={activeSection === 'home' ? 'active' : ''}>Inicio</a>
-        <a href="about" className={activeSection === 'about' ? 'active' : ''}>Nosotros</a>
-        <a href="menu" className={activeSection === 'menu' ? 'active' : ''}>Menú</a>
-        <a href="contact" className={activeSection === 'contact' ? 'active' : ''}>Contacto</a>
+        <Link to="/" className={activeSection === 'home' ? 'active' : ''}>Inicio</Link>
+        <Link to="/about" className={activeSection === 'about' ? 'active' : ''}>Nosotros</Link>
+        <Link to="/menu" className={activeSection === 'menu' ? 'active' : ''}>Menú</Link>
+        <Link to="/contacto" className={activeSection === 'contact' ? 'active' : ''}>Contacto</Link>
       </nav>
     </header>
   );
