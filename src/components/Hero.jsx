@@ -1,4 +1,5 @@
 import styles from './Hero.module.css';
+import { Link } from 'react-router-dom';
 
 function Hero() {
   return (
@@ -8,9 +9,9 @@ function Hero() {
         <p className={styles.subtitle}>
           Disfrutá el mejor café de la ciudad en un ambiente acogedor.
         </p>
-        <a href="menu" className={styles.ctaButton}>
+        <Link to="/menu" className={styles.ctaButton}>
           Ver Menú
-        </a>
+        </Link>
       </div>
     </section>
   );

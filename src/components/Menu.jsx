@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import menuItems from '../data/menuData';
 import styles from './Menu.module.css';
-import Checkout from './Checkout';
 
 const categories = ['Todos', 'Café', 'Pasteles', 'Bebidas'];
 
 function Menu() {
   const [selectedCategory, setSelectedCategory] = useState('Todos');
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [showCheckout, setShowCheckout] = useState(false);
+  const navigate = useNavigate();
 
   const filteredItems =
     selectedCategory === 'Todos'
@@ -17,7 +17,6 @@ function Menu() {
 
   const openModal = (product) => {
     setSelectedProduct(product);
-    setShowCheckout(false);
   };
 
   const closeModal = () => {
@@ -25,30 +24,10 @@ function Menu() {
   };
 
   const handleBuyClick = () => {
-    setShowCheckout(true);
+    if (selectedProduct) {
+      navigate('/checkout', { state: { product: selectedProduct } });
+    }
   };
-
-  const handleBackToMenu = () => {
-    setShowCheckout(false);
-    setSelectedProduct(null);
-  };
-
-  const handleConfirmPurchase = (data) => {
-    console.log('Compra confirmada:', data);
-    alert(`Gracias por tu compra, ${data.name}!`);
-    setShowCheckout(false);
-    setSelectedProduct(null);
-  };
-
-  if (showCheckout && selectedProduct) {
-    return (
-      <Checkout
-        product={selectedProduct}
-        onBack={handleBackToMenu}
-        onConfirm={handleConfirmPurchase}
-      />
-    );
-  }
 
   return (
     <section id="menu" className={styles.menuSection}>
@@ -70,7 +49,11 @@ function Menu() {
 
       <div className={styles.productsGrid}>
         {filteredItems.map((item) => (
-          <div key={item.id} className={styles.productCard} onClick={() => openModal(item)}>
+          <div
+            key={item.id}
+            className={styles.productCard}
+            onClick={() => openModal(item)}
+          >
             <img src={item.image} alt={item.name} className={styles.productImage} />
             <h3 className={styles.productName}>{item.name}</h3>
             <p className={styles.productDescription}>{item.description}</p>
@@ -79,15 +62,17 @@ function Menu() {
         ))}
       </div>
 
-      {selectedProduct && !showCheckout && (
+      {selectedProduct && (
         <div className={styles.modalOverlay} onClick={closeModal}>
-          <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <button className={styles.closeButton} onClick={closeModal}>✕</button>
             <img src={selectedProduct.image} alt={selectedProduct.name} className={styles.modalImage} />
             <h3 className={styles.modalName}>{selectedProduct.name}</h3>
             <p className={styles.modalDescription}>{selectedProduct.description}</p>
             <p className={styles.modalPrice}>{selectedProduct.price}</p>
-            <button className={styles.buyButton} onClick={handleBuyClick}>Comprar</button>
+            <button className={styles.buyButton} onClick={handleBuyClick}>
+              Comprar
+            </button>
           </div>
         </div>
       )}
@@ -96,9 +81,3 @@ function Menu() {
 }
 
 export default Menu;
-
-
-
-
-
-

@@ -1,14 +1,26 @@
 import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './Checkout.module.css';
 
-function Checkout({ product, onBack, onConfirm }) {
+function Checkout() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const product = location.state?.product;
+
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [option, setOption] = useState('Para llevar');
 
+  if (!product) {
+    return <p>No se ha seleccionado ningún producto.</p>;
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onConfirm({ name, phone, option, product });
+    console.log({ name, phone, option, product });
+    alert("¡Compra confirmada!");
+
+    navigate('/menu'); 
   };
 
   return (
@@ -45,7 +57,7 @@ function Checkout({ product, onBack, onConfirm }) {
         </label>
 
         <div className={styles.buttons}>
-          <button type="button" onClick={onBack}>Volver al menú</button>
+          <button type="button" onClick={() => navigate('/menu')}>Volver al menú</button>
           <button type="submit">Confirmar compra</button>
         </div>
       </form>
@@ -54,5 +66,4 @@ function Checkout({ product, onBack, onConfirm }) {
 }
 
 export default Checkout;
-
 

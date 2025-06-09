@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Header() {
   const [activeSection, setActiveSection] = useState('home');
+  const { pathname } = useLocation(); // ✅ Esto define pathname
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,14 +31,16 @@ function Header() {
     <header>
       <h1>Café Aromático</h1>
       <nav>
-        <Link to="/" className={activeSection === 'home' ? 'active' : ''}>Inicio</Link>
-        <Link to="/about" className={activeSection === 'about' ? 'active' : ''}>Nosotros</Link>
-        <Link to="/menu" className={activeSection === 'menu' ? 'active' : ''}>Menú</Link>
-        <Link to="/contacto" className={activeSection === 'contact' ? 'active' : ''}>Contacto</Link>
+        <Link to="/" className={pathname === '/' ? 'active' : ''}>Inicio</Link>
+        <Link to="/about" className={pathname === '/about' ? 'active' : ''}>Nosotros</Link>
+        <Link to="/menu" className={pathname === '/menu' ? 'active' : ''}>Menú</Link>
+        <Link to="/contact" className={pathname === '/contact' ? 'active' : ''}>Contacto</Link>
       </nav>
     </header>
   );
 }
 
 export default Header;
+
+
 
